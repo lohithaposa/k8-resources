@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-Service           # Name of the Service  
+spec:
+  selector:  #labels are used as selectors
+    project: roboshop
+    component: frontend
+    environment: dev                  # Matches Pods with these labels
+    
+  ports:
+    - name: http
+      protocol: TCP           # Protocol (TCP/UDP/SCTP)
+      port: 80                # Port exposed by the Service
+      targetPort: 8080        # Port on the Pod container
+  type: ClusterIP             # Default type (internal access only)
