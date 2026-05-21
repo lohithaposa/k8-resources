@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+
+metadata:
+  name: nginx
+  labels:  #replicaset labels
+    project: roboshop
+    purpose: rs-demo
+    tier: frontend
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      project: roboshop
+      purpose: rs-demo
+      tier: frontend
+# This is pod
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        purpose: rs-demo
+        tier: frontend
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx       
+
